@@ -4,21 +4,44 @@ conn = psycopg2.connect(host = "localhost", port = "5432" ,user ="postgres",pass
 
 cur = conn.cursor()
 # displaying products
-def display_products():
+def fetch_products():
     cur.execute('select * from products')
-    products=cur.fetchall()
-    return products
+    prods=cur.fetchall()
+    return prods
 
-products = display_products()
+products = fetch_products()
 # print(products)
 
 # displaying sales
-def display_sales():
+def fetch_sales():
     cur.execute('select * from sales')
     sales=cur.fetchall()
     return sales
 
-sales = display_sales()
+sales = fetch_sales()
+# print(sales)
+
+def fetch_stock():
+    cur.execute('select * from stock;')
+    stock = cur.fetchall()
+    return stock
+
+stock1 = fetch_stock()
+# print(stock1)
+
+# fetch data in the database 
+def fetch_data(table):
+    query = f'select * from {table}'
+    cur.execute(query)
+    data=cur.fetchall()
+    return data
+
+
+products=fetch_data('products')
+# print(products)
+stock=fetch_data('stock')
+# print(stock)
+sales=fetch_data('sales')
 # print(sales)
 
 # inserting products
@@ -27,7 +50,16 @@ def insert_product(product_values):
     conn.commit()
 
 first_product=('shoes',1000,1350)
+second_product=('television',30000,33500)
+third_product=('chair',500,700)
+fourth_product=('bag',200,500)
+fifth_product=('books',1000,1500)
 # insert_product(first_product)
+# insert_product(second_product)
+# insert_product(third_product)
+# insert_product(fourth_product)
+# insert_product(fifth_product)
+
     
 # sales insertion
 def insert_sales(sales_values):
@@ -35,7 +67,16 @@ def insert_sales(sales_values):
     conn.commit()
 
 first_sale=(2,1)
+second_sale=(6,2)
+third_sale=(4,4)
+fourth_sale=(1,3)
+fifth_sale=(3,5)
 # insert_sales(first_sale)
+# insert_sales(second_sale)
+# insert_sales(third_sale)
+# insert_sales(fourth_sale)
+# insert_sales(fifth_sale)
+
 
 # displaying profits per products
 def products_profit():
@@ -55,3 +96,6 @@ def sales_product():
     return sales
 mysales=sales_product()
 # print(f'my sales per product are {mysales}')
+
+
+
