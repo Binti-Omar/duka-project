@@ -21,6 +21,7 @@ def fetch_sales():
 sales = fetch_sales()
 # print(sales)
 
+# displaying stock
 def fetch_stock():
     cur.execute('select * from stock;')
     stock = cur.fetchall()
@@ -67,7 +68,7 @@ def insert_sales(sales_values):
     conn.commit()
 
 first_sale=(2,1)
-second_sale=(6,2)
+second_sale=(5,2)
 third_sale=(4,4)
 fourth_sale=(1,3)
 fifth_sale=(3,5)
@@ -76,6 +77,24 @@ fifth_sale=(3,5)
 # insert_sales(third_sale)
 # insert_sales(fourth_sale)
 # insert_sales(fifth_sale)
+
+
+# stock insertion
+def insert_stock(stock_values):
+    cur.execute(f"insert into stock(pid,stock_quantity)values{stock_values}")
+    conn.commit()
+
+first_stock=(4,1)
+second_stock=(1,2)
+third_stock=(5,4)
+fourth_stock=(3,3)
+fifth_stock=(2,5)
+# insert_stock(first_stock)
+# insert_stock(second_stock)
+# insert_stock(third_stock)
+# insert_stock(fourth_stock)
+# insert_stock(fifth_stock)
+
 
 
 # displaying profits per products
