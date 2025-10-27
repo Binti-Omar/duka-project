@@ -11,19 +11,21 @@
 
 <body>
     <h1>sales page</h1>
-    <p>{{sales}}</p>
-
     <table>
         <tr>
             <th>ID</th>
-            <th>PID</th>
+            <th>Product ID</th>
             <th>Quantity</th>
+            <th>Created at</th>
         </tr>
+        {% for sale in sales  %}
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>1</td>
+            <td>{{sale[0]}}</td>
+            <td>{{sale[1]}}</td>
+            <td>{{sale[2]}}</td>
+            <td>{{sale[3]}}</td>
         </tr>
+        {% endfor %}
     </table>
 
 

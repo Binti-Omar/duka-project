@@ -20,7 +20,7 @@ def sales():
 @app.route('/stock')
 def stocks():
     stock=fetch_data('stock')
-    return render_template ('stock.html')
+    return render_template ('stock.html',stocks=stock)
 
 
 

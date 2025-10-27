@@ -11,20 +11,21 @@
 
 <body>
     <h1>stocks page</h1>
-    <p>{{stocks}}</p>
 
 
     <table>
         <tr>
             <th>ID</th>
-            <th>PID</th>
-            <th>stock_Quantity</th>
+            <th>Product ID</th>
+            <th>stock Quantity</th>
         </tr>
+        {% for stock in stocks %}
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>1</td>
+            <td>{{stock[0]}}</td>
+            <td>{{stock[1]}}</td>
+            <td>{{stock[2]}}</td>
         </tr>
+        {% endfor %}
     </table>
 
 
