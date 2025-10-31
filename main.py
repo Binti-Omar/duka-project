@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request,redirect,url_for
-from database import fetch_data,insert_product
+from database import fetch_data,insert_product,insert_sales,insert_stock
 
 app=Flask(__name__)
 
@@ -30,18 +30,37 @@ def add_products():
 @app.route('/sales')
 def sales():
     sales=fetch_data('sales')
-    return render_template ('sales.html',sales=sales)
+    products=fetch_data('products')
+    return render_template ('sales.html',sales=sales,products=products)
 
+@app.route('/add_sale',methods=['GET','POST'])
+def add_sale():
+    if request.method=='POST':
+        productid=request.form['pid']
+        quantity=request.form['quantity']
+        new_sale=(productid,quantity)
+        insert_sales(new_sale)
+    return redirect(url_for('sales'))
 
 
 @app.route('/stock')
 def stocks():
     stock=fetch_data('stock')
-    return render_template ('stock.html',stocks=stock)
+    products=fetch_data('products')
+    return render_template ('stock.html',stocks=stock,products=products)
 
+@app.route('/add_stock',methods=['GET','POST'])
+def stock():
+    if request.method=='POST':
+        pid=request.form['pid']
+        stock=request.form['stock quantity']
+        new_stock=(pid,stock)
+        insert_stock(new_stock)
+    return redirect(url_for('stocks'))
 
-
-
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
 
 
 app.run(debug=True)
